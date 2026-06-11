@@ -5,9 +5,9 @@ Comic tracking platform inspired by MyAnimeList, Letterboxd and Backloggd.
 
 ## Goals
 
--Track comic reading progress
+- Track comic reading progress
 
--Contribute to comicbook rankings by giving them ratings
+- Contribute to comicbook rankings by giving them ratings
 
 - Get reccomendations determined by your comicbook ratings
 
