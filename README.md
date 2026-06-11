@@ -31,7 +31,7 @@ Early Development.
 -SQL Server database created
 -Initial migration completed
 
-##Development Log
+## Development Log
 
 ### 2026-06-11
 
