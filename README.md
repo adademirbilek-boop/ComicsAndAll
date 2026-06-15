@@ -15,10 +15,10 @@ Comic tracking platform inspired by MyAnimeList, Letterboxd and Backloggd.
 
 ## Tech Stack
 
--ASP.NET Core MVC
--Entity Framework Core
--SQL Server
--C#
+- ASP.NET Core MVC
+- Entity Framework Core
+- SQL Server
+- C#
 
 ## Current status
 
@@ -26,10 +26,11 @@ Early Development.
 
 ## Completed
 
--Database Schema created
--EF Core configured
--SQL Server database created
--Initial migration completed
+- Database Schema created
+- EF Core configured
+- SQL Server database created
+- Initial migration completed
+- Added the initial placeholder data
 
 ## Development Log
 
