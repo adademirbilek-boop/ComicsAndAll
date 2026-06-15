@@ -15,10 +15,10 @@ Comic tracking platform inspired by MyAnimeList, Letterboxd and Backloggd.
 
 ## Tech Stack
 
--ASP.NET Core MVC
--Entity Framework Core
--SQL Server
--C#
+- ASP.NET Core MVC
+- Entity Framework Core
+- SQL Server
+- C#
 
 ## Current status
 
