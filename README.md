@@ -26,11 +26,11 @@ Early Development.
 
 ## Completed
 
--Database Schema created
--EF Core configured
--SQL Server database created
--Initial migration completed
--Added the initial placeholder data
+- Database Schema created
+- EF Core configured
+- SQL Server database created
+- Initial migration completed
+- Added the initial placeholder data
 
 ## Development Log
 
