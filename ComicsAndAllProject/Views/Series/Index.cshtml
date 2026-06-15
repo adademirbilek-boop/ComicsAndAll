@@ -1,0 +1,7 @@
+﻿@using ComicsAndAllProject.Core.Entities
+@model IEnumerable<Series>
+
+@foreach (var series in Model)
+{
+    <p>@series.Title</p>
+}

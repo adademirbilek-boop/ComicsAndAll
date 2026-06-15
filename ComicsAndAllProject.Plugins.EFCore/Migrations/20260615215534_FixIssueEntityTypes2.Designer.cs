@@ -4,6 +4,7 @@ using ComicsAndAllProject.Plugins.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComicsAndAllProject.Plugins.EFCore.Migrations
 {
     [DbContext(typeof(ComicsAndAllDbContext))]
-    partial class ComicsAndAllDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260615215534_FixIssueEntityTypes2")]
+    partial class FixIssueEntityTypes2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,6 +104,7 @@ namespace ComicsAndAllProject.Plugins.EFCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

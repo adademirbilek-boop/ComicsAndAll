@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ComicsAndAllProject.Plugins.EFCore\ComicsAndAllProject.Plugins.EFCore.csproj" />
+    <ProjectReference Include="..\ComicsAndAllProject.UseCases\ComicsAndAllProject.UseCases.csproj" />
   </ItemGroup>
 
 </Project>

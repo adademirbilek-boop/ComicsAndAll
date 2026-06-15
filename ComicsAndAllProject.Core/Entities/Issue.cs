@@ -14,15 +14,19 @@ namespace ComicsAndAllProject.Core.Entities
 
         public string? IssueNumber { get; set; } = null;
 
-        public string Title { get; set; }
+        public decimal IssueOrder { get; set; }
+
+        public string? Title { get; set; }
 
         public DateOnly? CoverDate { get; set; }
 
         public DateOnly? ReleaseDate { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public string? CoverImageUrl { get; set; }
 
         public string? SourceName { get; set; }
+
+        public string? SourceUrl { get; set; }
 
         public string? ExternalSourceId { get; set; }
 
