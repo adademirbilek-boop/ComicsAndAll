@@ -7,10 +7,10 @@ using ComicsAndAllProject.Core.Entities;
 
 namespace ComicsAndAllProject.Core.RepositoryInterfaces
 {
-    public interface ISeriesRepository
+    public interface ICharactersRepository
     {
-        IEnumerable<Series> GetAll();
+        IEnumerable<Character> GetAll();
 
-        Series Get(int id);
+        Character? GetById(int id);
     }
 }

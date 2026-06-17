@@ -1,6 +1,8 @@
 using ComicsAndAllProject.Core.RepositoryInterfaces;
 using ComicsAndAllProject.Plugins.EFCore.Data;
 using ComicsAndAllProject.Plugins.EFCore.Repositories;
+using ComicsAndAllProject.UseCases.CharacterInterfaces;
+using ComicsAndAllProject.UseCases.CharacterUsecases;
 using ComicsAndAllProject.UseCases.Interfaces;
 using ComicsAndAllProject.UseCases.SeriesUsecases;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
-
+builder.Services.AddScoped<IPublishersRepository, PublishersRepository>();
 builder.Services.AddScoped<IViewSeriesUsecase, ViewSeriesUsecase>();
+builder.Services.AddScoped<ICharactersRepository,CharactersRepository>();
+builder.Services.AddScoped<IGetCharacterByIdUsecase, GetCharacterByIdUsecase>();
+
+
+builder.Services.AddScoped<IGetSeriesByIdUsecase, GetSeriesByIdUsecase>();
+builder.Services.AddScoped<IGetAllCharactersUsecase, GetAllCharactersUsecase>();
 
 builder.Services.AddDbContext<ComicsAndAllDbContext>(options =>
     options.UseSqlServer(

@@ -1,0 +1,53 @@
+﻿@using ComicsAndAllProject.Core.Entities
+@model IEnumerable<Character>
+
+<div class="container mt-4">
+
+    <h1 class="mb-4">Characters</h1>
+
+    <div class="row">
+
+        @foreach (var character in Model)
+        {
+            <div class="col-md-3 mb-4">
+
+                <div class="card h-100 shadow-sm">
+
+                    <img src="https://placehold.co/300x450/E5E7EB/6B7280?text=No+Image"
+                         class="card-img-top"
+                         style="height:350px; object-fit:cover;" />
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            @character.Name
+                        </h5>
+
+                        @if (!string.IsNullOrWhiteSpace(character.RealName))
+                        {
+                            <p class="text-muted">
+                                @character.RealName
+                            </p>
+                        }
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0">
+
+                        <a asp-controller="Characters"
+                           asp-action="Details"
+                           asp-route-id="@character.Id"
+                           class="btn btn-dark w-100">
+                            View Character
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

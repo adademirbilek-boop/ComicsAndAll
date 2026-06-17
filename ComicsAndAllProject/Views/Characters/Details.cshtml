@@ -1,0 +1,38 @@
+﻿@using ComicsAndAllProject.ViewModels
+@model CharactersPageViewModel
+
+@{
+    var placeholder = "https://placehold.co/300x450/E5E7EB/6B7280?text=No+Image";
+}
+
+<div class="container py-4">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <img src="@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? placeholder : Model.ImageUrl)"
+                 class="img-fluid rounded shadow-sm" />
+        </div>
+
+        <div class="col-md-9">
+
+            <h1>@Model.Name</h1>
+
+            <h5 class="text-muted">
+                @(string.IsNullOrWhiteSpace(Model.RealName)
+                                ? "Unknown Identity"
+                                : Model.RealName)
+            </h5>
+
+            <hr />
+
+            <p>
+                <strong>Publisher:</strong>
+                @Model.PublisherName
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

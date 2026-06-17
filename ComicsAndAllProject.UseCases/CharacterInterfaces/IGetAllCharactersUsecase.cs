@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using ComicsAndAllProject.Core.Entities;
 
-namespace ComicsAndAllProject.Core.RepositoryInterfaces
+namespace ComicsAndAllProject.UseCases.CharacterInterfaces
 {
-    public interface ISeriesRepository
+    public interface  IGetAllCharactersUsecase
     {
-        IEnumerable<Series> GetAll();
-
-        Series Get(int id);
+        IEnumerable<Character> Execute();
     }
 }

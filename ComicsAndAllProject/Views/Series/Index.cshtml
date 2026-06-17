@@ -1,7 +1,40 @@
 ﻿@using ComicsAndAllProject.Core.Entities
-@model IEnumerable<Series>
+@model IEnumerable<ComicsAndAllProject.Core.Entities.Series>
 
-@foreach (var series in Model)
-{
-    <p>@series.Title</p>
+@{
+    ViewData["Title"] = "Series";
+    var placeholder = "https://placehold.co/300x450/111827/F9FAFB?text=Comic+Cover";
 }
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Comic Series</h1>
+            <p class="text-muted mb-0">Browse comic book series in the database.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var series in Model)
+        {
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <a asp-controller="Series" asp-action="Details" asp-route-id="@series.Id"
+                   class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="@(string.IsNullOrWhiteSpace(series.CoverImageUrl) ? placeholder : series.CoverImageUrl)"
+                             class="card-img-top"
+                             style="height: 260px; object-fit: cover;"
+                             alt="@series.Title" />
+
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold mb-1">@series.Title</h6>
+                            <small class="text-muted">
+                                @(series.StartYear?.ToString() ?? "Unknown")
+                            </small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

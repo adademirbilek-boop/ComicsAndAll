@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 using ComicsAndAllProject.Core.Entities;
 using ComicsAndAllProject.Core.RepositoryInterfaces;
 using ComicsAndAllProject.Plugins.EFCore.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace ComicsAndAllProject.Plugins.EFCore.Repositories
 {
-    public class SeriesRepository : ISeriesRepository
+    public class CharactersRepository : ICharactersRepository
     {
         private readonly ComicsAndAllDbContext _context;
-        public SeriesRepository(ComicsAndAllDbContext context)
+        public CharactersRepository(ComicsAndAllDbContext context)
         {
             _context = context;
         }
-        public IEnumerable<Series> GetAll()
+
+        public IEnumerable<Character> GetAll()
         {
-            return _context.Series.ToList();
+           return _context.Characters;
         }
 
-        public Series Get(int id)
+        public Character? GetById(int id)
         {
-            
-            return _context.Series.Include(x => x.Issues).FirstOrDefault(x => x.Id == id);
+            return _context.Characters.FirstOrDefault(x => x.Id == id);
         }
+
+        
     }
 }

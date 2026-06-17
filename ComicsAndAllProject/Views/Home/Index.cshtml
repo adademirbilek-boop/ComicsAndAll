@@ -1,8 +1,65 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+    var placeholder = "https://placehold.co/300x450/111827/F9FAFB?text=Comic+Cover";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+    <section class="p-5 mb-5 bg-dark text-white rounded-4 shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-4 fw-bold">Track your comic reading.</h1>
+                <p class="lead text-white-50">
+                    Discover series, follow issues, rate comics and build your reading history.
+                </p>
+
+                <a asp-controller="Series" asp-action="Index" class="btn btn-light btn-lg mt-3">
+                    Browse Series
+                </a>
+            </div>
+
+            <div class="col-md-4 d-none d-md-block text-center">
+                <img src="@placeholder"
+                     class="img-fluid rounded shadow"
+                     style="max-height: 320px;"
+                     alt="Comic cover placeholder" />
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="fw-bold">Top Comic Book Series</h2>
+            <a asp-controller="Series" asp-action="Index" class="text-decoration-none">See all</a>
+        </div>
+
+        <div class="row g-4">
+            @for (int i = 1; i <= 6; i++)
+            {
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="@placeholder"
+                             class="card-img-top"
+                             style="height: 240px; object-fit: cover;"
+                             alt="Comic placeholder" />
+
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-1">Featured Series</h6>
+                            <small class="text-muted">Placeholder</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="fw-bold">Recommended</h2>
+            <a href="#" class="text-decoration-none">See all</a>
+        </div>
+
+        <div class="alert alert-secondary rounded-3">
+            Recommendations will appear here after ratings and user accounts are implemented.
+        </div>
+    </section>
 </div>

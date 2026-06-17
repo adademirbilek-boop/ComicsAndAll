@@ -30,6 +30,7 @@ namespace ComicsAndAllProject.Core.Entities
 
         public string? ExternalSourceId { get; set; }
 
+        public Series? Series { get; set; }
 
     }
 }

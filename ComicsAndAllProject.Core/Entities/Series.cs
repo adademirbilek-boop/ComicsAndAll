@@ -31,5 +31,8 @@ namespace ComicsAndAllProject.Core.Entities
         public string? SourceUrl { get; set; }
 
         public string? ExternalSourceId { get; set; }
+
+        public ICollection<Issue>? Issues { get; set; } = new List<Issue>();
+       
     }
 }
