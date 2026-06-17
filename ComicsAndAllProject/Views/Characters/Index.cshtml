@@ -1,53 +1,50 @@
 ﻿@using ComicsAndAllProject.Core.Entities
-@model IEnumerable<Character>
+@model IEnumerable<ComicsAndAllProject.Core.Entities.Character>
 
-<div class="container mt-4">
+@{
+    ViewData["Title"] = "Characters";
+    var placeholder = "https://placehold.co/300x450/E5E7EB/6B7280?text=No+Image";
+}
 
-    <h1 class="mb-4">Characters</h1>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Characters</h1>
+            <p class="text-muted mb-0">Browse comic book characters in the database.</p>
+        </div>
 
-    <div class="row">
-
-        @foreach (var character in Model)
-        {
-            <div class="col-md-3 mb-4">
-
-                <div class="card h-100 shadow-sm">
-
-                    <img src="https://placehold.co/300x450/E5E7EB/6B7280?text=No+Image"
-                         class="card-img-top"
-                         style="height:350px; object-fit:cover;" />
-
-                    <div class="card-body">
-
-                        <h5 class="card-title">
-                            @character.Name
-                        </h5>
-
-                        @if (!string.IsNullOrWhiteSpace(character.RealName))
-                        {
-                            <p class="text-muted">
-                                @character.RealName
-                            </p>
-                        }
-
-                    </div>
-
-                    <div class="card-footer bg-white border-0">
-
-                        <a asp-controller="Characters"
-                           asp-action="Details"
-                           asp-route-id="@character.Id"
-                           class="btn btn-dark w-100">
-                            View Character
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-        }
-
+        <a asp-controller="Series" asp-action="Index" class="btn btn-outline-dark">
+            Browse Series
+        </a>
     </div>
 
+    <div class="row g-4">
+        @foreach (var character in Model)
+        {
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <a asp-controller="Characters"
+                   asp-action="Details"
+                   asp-route-id="@character.Id"
+                   class="text-decoration-none text-dark">
+
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="@(string.IsNullOrWhiteSpace(character.ImageUrl) ? placeholder : character.ImageUrl)"
+                             class="card-img-top"
+                             style="height: 260px; object-fit: cover;"
+                             alt="@character.Name" />
+
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold mb-1">@character.Name</h6>
+
+                            <small class="text-muted">
+                                @(string.IsNullOrWhiteSpace(character.RealName)
+                                                            ? "Unknown identity"
+                                                            : character.RealName)
+                        </small>
+                    </div>
+                </div>
+            </a>
+        </div>
+                }
+    </div>
 </div>

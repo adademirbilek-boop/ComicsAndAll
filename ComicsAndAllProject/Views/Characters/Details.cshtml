@@ -1,38 +1,71 @@
 ﻿@using ComicsAndAllProject.ViewModels
-@model CharactersPageViewModel
+@model ComicsAndAllProject.ViewModels.CharactersPageViewModel
 
 @{
+    ViewData["Title"] = Model.Name;
     var placeholder = "https://placehold.co/300x450/E5E7EB/6B7280?text=No+Image";
 }
 
 <div class="container py-4">
+    <div class="mb-3">
+        <a asp-controller="Characters" asp-action="Index" class="text-decoration-none">
+            ← Back to Characters
+        </a>
+    </div>
 
-    <div class="row">
-
+    <div class="row g-4">
         <div class="col-md-3">
             <img src="@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? placeholder : Model.ImageUrl)"
-                 class="img-fluid rounded shadow-sm" />
+                 class="img-fluid rounded shadow-sm"
+                 alt="@Model.Name" />
         </div>
 
         <div class="col-md-9">
+            <h1 class="fw-bold mb-1">@Model.Name</h1>
 
-            <h1>@Model.Name</h1>
-
-            <h5 class="text-muted">
+            <p class="text-muted fs-5 mb-3">
                 @(string.IsNullOrWhiteSpace(Model.RealName)
-                                ? "Unknown Identity"
+                                ? "Unknown identity"
                                 : Model.RealName)
-            </h5>
-
-            <hr />
-
-            <p>
-                <strong>Publisher:</strong>
-                @Model.PublisherName
             </p>
 
+            <div class="d-flex gap-2 mb-4">
+                <span class="badge bg-dark">Character</span>
+
+                @if (!string.IsNullOrWhiteSpace(Model.PublisherName))
+                {
+                    <span class="badge bg-secondary">@Model.PublisherName</span>
+                }
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-3">Profile</h4>
+
+                    <p class="mb-2">
+                        <strong>Name:</strong> @Model.Name
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Real Name:</strong>
+                        @(string.IsNullOrWhiteSpace(Model.RealName) ? "Unknown" : Model.RealName)
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Publisher:</strong>
+                        @(string.IsNullOrWhiteSpace(Model.PublisherName) ? "Unknown" : Model.PublisherName)
+                    </p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-2">Appearances</h4>
+                    <p class="text-muted mb-0">
+                        Issue and series appearances will be added after character relations are expanded.
+                    </p>
+                </div>
+            </div>
         </div>
-
     </div>
-
 </div>
