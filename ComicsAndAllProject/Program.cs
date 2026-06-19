@@ -4,6 +4,11 @@ using ComicsAndAllProject.Plugins.EFCore.Repositories;
 using ComicsAndAllProject.UseCases.CharacterInterfaces;
 using ComicsAndAllProject.UseCases.CharacterUsecases;
 using ComicsAndAllProject.UseCases.Interfaces;
+using ComicsAndAllProject.UseCases.IssueInterfaces;
+using ComicsAndAllProject.UseCases.IssueUsecases;
+using ComicsAndAllProject.UseCases.PublisherInterfaces;
+using ComicsAndAllProject.UseCases.PublisherUsecases;
+using ComicsAndAllProject.UseCases.SeriesInterfaces;
 using ComicsAndAllProject.UseCases.SeriesUsecases;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,8 +23,16 @@ builder.Services.AddScoped<IPublishersRepository, PublishersRepository>();
 builder.Services.AddScoped<IViewSeriesUsecase, ViewSeriesUsecase>();
 builder.Services.AddScoped<ICharactersRepository,CharactersRepository>();
 builder.Services.AddScoped<IGetCharacterByIdUsecase, GetCharacterByIdUsecase>();
+builder.Services.AddScoped<IIssuesRepository, IssuesRepository>();
+builder.Services.AddScoped<ISearchSeriesUsecase, SearchSeriesUsecase>();
+builder.Services.AddScoped<IGetAllPublishersUsecase, GetAllPublishersUsecase>();
+builder.Services.AddScoped<IGetPublisherUsecase, GetPublisherUsecase>();
+builder.Services.AddScoped<ISearchPublishersUsecase, SearchPublisherUsecase>();
+builder.Services.AddScoped<IGetSeriesByPublisherIdUsecase, GetSeriesByPublisherIdUsecase>();
 
 
+builder.Services.AddScoped<IGetIssueUsecase , GetIssueUsecase>();
+builder.Services.AddScoped<IGetAllIssuesUsecase, GetAllIssuesUsecase>();
 builder.Services.AddScoped<IGetSeriesByIdUsecase, GetSeriesByIdUsecase>();
 builder.Services.AddScoped<IGetAllCharactersUsecase, GetAllCharactersUsecase>();
 

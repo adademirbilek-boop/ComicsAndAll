@@ -12,5 +12,9 @@ namespace ComicsAndAllProject.Core.RepositoryInterfaces
         IEnumerable<Series> GetAll();
 
         Series Get(int id);
+
+        IEnumerable<Series> Search(string name);
+
+        IEnumerable<Series> GetByPublisherId(int publisherid);
     }
 }

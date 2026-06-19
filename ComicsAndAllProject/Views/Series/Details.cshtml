@@ -29,7 +29,9 @@
             <div class="list-group shadow-sm">
                 @foreach (var issue in Model.Issues)
                 {
-                    <a href="#"
+                    <a asp-controller="Issues"
+                       asp-action="Details"
+                       asp-route-id="@issue.id"
                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <div>
                             <strong>#@issue.IssueNumber</strong>

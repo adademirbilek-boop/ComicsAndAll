@@ -1,0 +1,101 @@
+﻿@model ComicsAndAllProject.ViewModels.IssueDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+
+    var placeholder =
+        "https://placehold.co/400x600/E5E7EB/6B7280?text=Issue+Cover";
+}
+
+<div class="container py-4">
+
+    <div class="mb-3">
+        <a asp-controller="Issues"
+           asp-action="Index"
+           class="text-decoration-none">
+            ← Back to Issues
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <img src="@(string.IsNullOrWhiteSpace(Model.CoverImageUrl)
+                                 ? placeholder
+                                 : Model.CoverImageUrl)"
+                 class="img-fluid rounded shadow"
+                 alt="@Model.Title" />
+
+        </div>
+
+        <div class="col-md-8">
+
+            <h1 class="fw-bold">@Model.Title</h1>
+
+            <div class="mb-3">
+
+                @if (!string.IsNullOrWhiteSpace(Model.IssueNumber))
+                {
+                    <span class="badge bg-dark me-2">
+                        #@Model.IssueNumber
+                    </span>
+                }
+
+                <span class="badge bg-secondary">
+                    @Model.PublisherName
+                </span>
+
+            </div>
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h4 class="mb-3">Issue Information</h4>
+
+                    <p>
+                        <strong>Series:</strong>
+                        @Model.Series.Title
+                    </p>
+
+                    <p>
+                        <strong>Issue Number:</strong>
+                        @Model.IssueNumber
+                    </p>
+
+                    <p>
+                        <strong>Issue Order:</strong>
+                        @Model.IssueOrder
+                    </p>
+
+                    <p>
+                        <strong>Release Date:</strong>
+                        @(Model.ReleaseDate?.ToString("dd MMM yyyy") ?? "Unknown")
+                    </p>
+
+                    <p>
+                        <strong>Cover Date:</strong>
+                        @(Model.CoverDate?.ToString("dd MMM yyyy") ?? "Unknown")
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="mt-4">
+
+                <a asp-controller="Series"
+                   asp-action="Details"
+                   asp-route-id="@Model.Series.Id"
+                   class="btn btn-dark">
+                    View Series
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

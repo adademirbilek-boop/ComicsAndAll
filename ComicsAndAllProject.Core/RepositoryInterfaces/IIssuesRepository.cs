@@ -7,11 +7,10 @@ using ComicsAndAllProject.Core.Entities;
 
 namespace ComicsAndAllProject.Core.RepositoryInterfaces
 {
-    public interface IPublishersRepository
+    public interface IIssuesRepository
     {
-        IEnumerable<Publisher> GetAll();
-        Publisher Get(int id);
+        IEnumerable<Issue> GetAll();
 
-        IEnumerable<Publisher> Search(string? name);
+        Issue Get(int id);
     }
 }

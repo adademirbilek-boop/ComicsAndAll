@@ -1,0 +1,69 @@
+﻿@model ComicsAndAllProject.ViewModels.PublisherDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+    var placeholder = "https://placehold.co/300x450/111827/F9FAFB?text=Comic+Cover";
+}
+
+<div class="container py-4">
+    <div class="mb-3">
+        <a asp-controller="Publishers" asp-action="Index" class="text-decoration-none">
+            ← Back to Publishers
+        </a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <span class="badge bg-dark mb-3">Publisher</span>
+                    <h1 class="fw-bold mb-2">@Model.Name</h1>
+
+                    <p class="text-muted mb-0">
+                        @Model.Series.Count series in the database.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h3 class="fw-bold mb-3">Series</h3>
+
+            @if (!Model.Series.Any())
+            {
+                <div class="alert alert-secondary">
+                    No series found for this publisher yet.
+                </div>
+            }
+            else
+            {
+                <div class="row g-4">
+                    @foreach (var series in Model.Series)
+                    {
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <a asp-controller="Series"
+                               asp-action="Details"
+                               asp-route-id="@series.Id"
+                               class="text-decoration-none text-dark">
+
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <img src="@(string.IsNullOrWhiteSpace(series.CoverImageUrl) ? placeholder : series.CoverImageUrl)"
+                                         class="card-img-top"
+                                         style="height: 240px; object-fit: cover;"
+                                         alt="@series.Title" />
+
+                                    <div class="card-body">
+                                        <h6 class="fw-bold mb-1">@series.Title</h6>
+                                        <small class="text-muted">
+                                            @(series.StartYear?.ToString() ?? "Unknown")
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
