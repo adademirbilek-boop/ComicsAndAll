@@ -70,5 +70,10 @@ Early Development.
  - Added Characters Details page
  - Added placeholder images for Characters
  - Improved visual layout of Series and Characters pages
-   
+
+### 2026-06-18
+
+- Added Publishers Index and Details page
+- Added Creators Index and Details page
+  
    
