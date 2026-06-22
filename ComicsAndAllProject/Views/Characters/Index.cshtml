@@ -18,6 +18,25 @@
         </a>
     </div>
 
+    <form method="get"
+          asp-controller="Characters"
+          asp-action="Index"
+          class="mb-4">
+        <div class="input-group">
+            <input type="text"
+                   name="name"
+                   value="@ViewBag.SearchTerm"
+                   class="form-control"
+                   placeholder="Search characters..." />
+
+            <button type="submit"
+                    class="btn btn-dark">
+                Search
+            </button>
+        </div>
+    </form>
+
+
     <div class="row g-4">
         @foreach (var character in Model)
         {

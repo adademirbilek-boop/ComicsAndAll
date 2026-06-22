@@ -1,0 +1,55 @@
+﻿@model ComicsAndAllProject.ViewModels.CreatorDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+    var placeholder = "https://placehold.co/300x450/E5E7EB/6B7280?text=Creator";
+}
+
+<div class="container py-4">
+    <div class="mb-3">
+        <a asp-controller="Creators"
+           asp-action="Index"
+           class="text-decoration-none">
+            ← Back to Creators
+        </a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <img src="@placeholder"
+                 class="img-fluid rounded shadow-sm"
+                 alt="@Model.Name" />
+        </div>
+
+        <div class="col-md-9">
+            <h1 class="fw-bold mb-1">@Model.Name</h1>
+
+            <div class="d-flex gap-2 mb-4">
+                <span class="badge bg-dark">Creator</span>
+                <span class="badge bg-secondary">Profile</span>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-3">Creator Info</h4>
+
+                    <p class="mb-2">
+                        <strong>Name:</strong> @Model.Name
+                    </p>
+
+                    <p class="mb-0 text-muted">
+                        Creator credits and issue relationships will be added when creator-issue data is available.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a asp-controller="Creators"
+                   asp-action="Index"
+                   class="btn btn-outline-dark">
+                    Back to Creators
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

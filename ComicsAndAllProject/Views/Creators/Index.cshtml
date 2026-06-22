@@ -1,0 +1,58 @@
+﻿@using ComicsAndAllProject.Core.Entities
+@model IEnumerable<Creator>
+
+@{
+    ViewData["Title"] = "Creators";
+    var placeholder = "https://placehold.co/300x450/E5E7EB/6B7280?text=Creator";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Creators</h1>
+            <p class="text-muted mb-0">Browse comic book writers, artists and creators.</p>
+        </div>
+    </div>
+
+    <form method="get"
+          asp-controller="Creators"
+          asp-action="Index"
+          class="mb-4">
+        <div class="input-group">
+            <input type="text"
+                   name="name"
+                   value="@ViewBag.SearchTerm"
+                   class="form-control"
+                   placeholder="Search creators..." />
+
+            <button type="submit" class="btn btn-dark">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <div class="row g-4">
+        @foreach (var creator in Model)
+        {
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <a asp-controller="Creators"
+                   asp-action="Details"
+                   asp-route-id="@creator.Id"
+                   class="text-decoration-none text-dark">
+
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="@placeholder"
+                             class="card-img-top"
+                             style="height: 260px; object-fit: cover;"
+                             alt="@creator.Name" />
+
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold mb-1">@creator.Name</h6>
+                            <small class="text-muted">Creator</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

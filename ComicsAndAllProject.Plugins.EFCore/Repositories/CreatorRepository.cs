@@ -6,30 +6,31 @@ using System.Threading.Tasks;
 using ComicsAndAllProject.Core.Entities;
 using ComicsAndAllProject.Core.RepositoryInterfaces;
 using ComicsAndAllProject.Plugins.EFCore.Data;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ComicsAndAllProject.Plugins.EFCore.Repositories
 {
-    public class CharactersRepository : ICharactersRepository
+    public class CreatorRepository : ICreatorRepository
     {
         private readonly ComicsAndAllDbContext _context;
-        public CharactersRepository(ComicsAndAllDbContext context)
+        public CreatorRepository(ComicsAndAllDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Character> GetAll()
+        public Creator Get(int id)
         {
-           return _context.Characters;
+            return _context.Creators.FirstOrDefault(x => x.Id == id);
         }
 
-        public Character? GetById(int id)
+        public IEnumerable<Creator> GetAll()
         {
-            return _context.Characters.FirstOrDefault(x => x.Id == id);
-        }
-        public IEnumerable<Character> Search(string? name = null)
-        {
-            return _context.Characters.Where(x => x.Name.Contains(name)).ToList();
+            return _context.Creators.ToList();
         }
 
+        public IEnumerable<Creator> Search(string? name)
+        {
+            return _context.Creators.Where(x => x.Name.Contains(name));
+        }
     }
 }

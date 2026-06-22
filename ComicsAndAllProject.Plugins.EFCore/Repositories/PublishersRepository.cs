@@ -27,7 +27,7 @@ namespace ComicsAndAllProject.Plugins.EFCore.Repositories
             return _context.Publishers.ToList();
         }
 
-        public IEnumerable<Publisher> Search(string? name)
+        public IEnumerable<Publisher> Search(string? name = null)
         {
             return _context.Publishers.Where(x => x.Name.Contains(name)).ToList();
         }

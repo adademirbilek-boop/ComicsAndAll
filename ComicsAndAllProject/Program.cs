@@ -3,6 +3,8 @@ using ComicsAndAllProject.Plugins.EFCore.Data;
 using ComicsAndAllProject.Plugins.EFCore.Repositories;
 using ComicsAndAllProject.UseCases.CharacterInterfaces;
 using ComicsAndAllProject.UseCases.CharacterUsecases;
+using ComicsAndAllProject.UseCases.CreatorInterfaces;
+using ComicsAndAllProject.UseCases.CreatorUsecases;
 using ComicsAndAllProject.UseCases.Interfaces;
 using ComicsAndAllProject.UseCases.IssueInterfaces;
 using ComicsAndAllProject.UseCases.IssueUsecases;
@@ -29,6 +31,11 @@ builder.Services.AddScoped<IGetAllPublishersUsecase, GetAllPublishersUsecase>();
 builder.Services.AddScoped<IGetPublisherUsecase, GetPublisherUsecase>();
 builder.Services.AddScoped<ISearchPublishersUsecase, SearchPublisherUsecase>();
 builder.Services.AddScoped<IGetSeriesByPublisherIdUsecase, GetSeriesByPublisherIdUsecase>();
+builder.Services.AddScoped<IGetAllCreatorsUsecase, GetAllCreatorsUsecase>();
+builder.Services.AddScoped<ICreatorRepository, CreatorRepository>();
+builder.Services.AddScoped<IGetCreatorByIdUsecase, GetCreatorByIdUsecase>();
+builder.Services.AddScoped<ISearchCharactersUsecase, SearchCharactersUsecase>();
+builder.Services.AddScoped<ISearchCreatorsUsecase, SearchCreatorsUsecase>();
 
 
 builder.Services.AddScoped<IGetIssueUsecase , GetIssueUsecase>();

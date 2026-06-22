@@ -7,12 +7,12 @@ using ComicsAndAllProject.Core.Entities;
 
 namespace ComicsAndAllProject.Core.RepositoryInterfaces
 {
-    public interface ICharactersRepository
+    public interface ICreatorRepository
     {
-        IEnumerable<Character> GetAll();
+        IEnumerable<Creator> GetAll();
 
-        Character? GetById(int id);
+        Creator Get(int id);
 
-        IEnumerable<Character> Search(string? name);
+        IEnumerable<Creator> Search(string? name);
     }
 }

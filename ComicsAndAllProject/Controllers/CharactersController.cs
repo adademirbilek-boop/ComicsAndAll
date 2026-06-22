@@ -3,6 +3,7 @@ using ComicsAndAllProject.Core.RepositoryInterfaces;
 using ComicsAndAllProject.UseCases.CharacterInterfaces;
 using ComicsAndAllProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ComicsAndAllProject.Controllers
 {
@@ -12,17 +13,28 @@ namespace ComicsAndAllProject.Controllers
         private readonly IGetAllCharactersUsecase _getAllCharactersUsecase;
         private readonly IGetCharacterByIdUsecase _getCharacterByIdUsecase;
         private readonly IPublishersRepository _publishersRepository;
+        private readonly ISearchCharactersUsecase _searchCharactersUsecase;
 
-        public CharactersController(IGetAllCharactersUsecase getAllCharactersUsecase, IGetCharacterByIdUsecase getCharacterByIdUsecase,IPublishersRepository publishersRepository)
+        public CharactersController(IGetAllCharactersUsecase getAllCharactersUsecase, IGetCharacterByIdUsecase getCharacterByIdUsecase,IPublishersRepository publishersRepository, ISearchCharactersUsecase searchCharactersUsecase)
         {
             _getAllCharactersUsecase = getAllCharactersUsecase;
             _getCharacterByIdUsecase = getCharacterByIdUsecase;
             _publishersRepository = publishersRepository;
+            _searchCharactersUsecase = searchCharactersUsecase;
         }
-        public IActionResult Index()
+        public IActionResult Index(string? name)
         {
-            var chars = _getAllCharactersUsecase.Execute();
-            return View(chars);
+            IEnumerable<Character> chars;
+            if (name.IsNullOrEmpty())
+            {
+                 chars = _getAllCharactersUsecase.Execute();
+            }
+            else
+            {
+                 chars = _searchCharactersUsecase.Execute(name);
+            }
+            ViewBag.SearchTerm = name;
+                return View(chars);
         }
         [HttpGet("{id}")]
         public IActionResult Details(int id)
