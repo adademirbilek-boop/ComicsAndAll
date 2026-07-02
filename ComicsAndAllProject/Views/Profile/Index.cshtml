@@ -1,0 +1,177 @@
+@using ComicsAndAllProject.ViewModels
+@model ProfileViewModel
+
+@{
+    ViewData["Title"] = $"{Model.Name}'s Profile";
+
+    string avatarUrl = string.IsNullOrWhiteSpace(Model.ProfileImageUrl)
+        ? "/images/placeholders/profile-placeholder.png"
+        : Model.ProfileImageUrl;
+}
+
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img src="@avatarUrl"
+                     class="card-img-top"
+                     alt="@Model.Name profile image"
+                     style="height: 260px; object-fit: cover;" />
+
+                <div class="card-body">
+                    <h4 class="card-title">@Model.Name</h4>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Bio))
+                    {
+                        <p class="card-text">@Model.Bio</p>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No bio yet.</p>
+                    }
+
+                    <small class="text-muted">
+                        Joined @Model.JoinedIn.ToString("MMMM yyyy")
+                    </small>
+
+                    @if (Model.IsOwn)
+                    {
+                        <div class="mt-3 d-grid gap-2">
+                            <a class="btn btn-outline-primary btn-sm" href="#">
+                                Edit Profile
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+            <section class="mb-4">
+                <h3>Favorite Characters</h3>
+
+                @if (Model.FavoriteCharacters != null && Model.FavoriteCharacters.Any())
+                {
+                    <div class="list-group">
+                        @foreach (var character in Model.FavoriteCharacters)
+                        {
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                                <div>
+                                    <strong>@character.Name</strong>
+
+                                    @if (!string.IsNullOrWhiteSpace(character.RealName))
+                                    {
+                                        <span class="text-muted">(@character.RealName)</span>
+                                    }
+                                </div>
+
+                                @if (Model.IsOwn)
+                                {
+                                    <form asp-controller="Profile"
+                                          asp-action="RemoveFavoriteCharacter"
+                                          method="post"
+                                          onsubmit="return confirm('Are you sure you want to remove this character from your favorites?');">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <input type="hidden"
+                                               name="characterId"
+                                               value="@character.Id" />
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-outline-danger"
+                                                title="Remove from favorites">
+                                            ???
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No favorite characters yet.</p>
+                }
+            </section>
+
+            <section class="mb-4">
+                <h3>Favorite Series</h3>
+
+                @if (Model.FavoriteSeries != null && Model.FavoriteSeries.Any())
+                {
+                    <div class="row">
+                        @foreach (var series in Model.FavoriteSeries)
+                        {
+                            <div class="col-md-3 mb-3">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="@(string.IsNullOrWhiteSpace(series.CoverImageUrl) ? "/images/placeholders/comic-cover.png" : series.CoverImageUrl)"
+                                         class="card-img-top"
+                                         alt="@series.Title"
+                                         style="height: 220px; object-fit: cover;" />
+
+                                    <div class="card-body">
+                                        <h6 class="card-title">@series.Title</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No favorite series yet.</p>
+                }
+            </section>
+
+            <section class="mb-4">
+                <h3>Favorite Issues</h3>
+
+                @if (Model.FavoriteIssues != null && Model.FavoriteIssues.Any())
+                {
+                    <div class="list-group">
+                        @foreach (var issue in Model.FavoriteIssues)
+                        {
+                            <div class="list-group-item">
+                                <strong>#@issue.IssueNumber</strong>
+
+                                @if (!string.IsNullOrWhiteSpace(issue.Title))
+                                {
+                                    <span>- @issue.Title</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No favorite issues yet.</p>
+                }
+            </section>
+
+            <section class="mb-4">
+                <h3>Favorite Volumes</h3>
+
+                @if (Model.FavoriteVolumes != null && Model.FavoriteVolumes.Any())
+                {
+                    <div class="list-group">
+                        @foreach (var volume in Model.FavoriteVolumes)
+                        {
+                            <div class="list-group-item">
+                                Volume @volume.VolumeNumber
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No favorite volumes yet.</p>
+                }
+            </section>
+
+        </div>
+    </div>
+</div>

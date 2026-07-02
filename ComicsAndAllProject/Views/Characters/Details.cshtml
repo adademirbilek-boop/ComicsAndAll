@@ -38,6 +38,41 @@
                 }
             </div>
 
+            <div class="mb-4">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    if (Model.IsFavorited)
+                    {
+                        <button class="btn btn-secondary" disabled>
+                            ★ Favorited
+                        </button>
+                    }
+                    else
+                    {
+                        <form asp-action="Favorite" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden" name="characterId" value="@Model.Id" />
+
+                            <button type="submit" class="btn btn-warning">
+                                ☆ Add to Favorites
+                            </button>
+                        </form>
+                    }
+                }
+                else
+                {
+                    <a asp-area="Identity"
+                       asp-page="/Account/Register"
+                       asp-route-returnUrl="@Context.Request.Path"
+                       class="btn btn-warning">
+                        ☆ Add to Favorites
+                    </a>
+                }
+            </div>
+
+        </div>
+
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">
                     <h4 class="fw-bold mb-3">Profile</h4>

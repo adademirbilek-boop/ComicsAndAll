@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,5 +25,15 @@ namespace ComicsAndAllProject.Plugins.EFCore.Data
         public DbSet<Series> Series { get; set; }
 
         public DbSet<Volume> Volumes { get; set; }
+
+        public DbSet<FavoriteCharacter> FavoriteCharacters { get; set; }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserProfile>()
+                .Ignore(userProfile => userProfile.FavoriteCharacters);
+        }
     }
 }

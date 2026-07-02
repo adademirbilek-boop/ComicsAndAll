@@ -11,5 +11,7 @@
         public string? PublisherName { get; set; }
 
         public string? ImageUrl { get; set; }
+
+        public bool IsFavorited { get; set; }
     }
 }

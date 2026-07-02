@@ -13,13 +13,22 @@ using ComicsAndAllProject.UseCases.PublisherUsecases;
 using ComicsAndAllProject.UseCases.SeriesInterfaces;
 using ComicsAndAllProject.UseCases.SeriesUsecases;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using ComicsAndAllProject.Areas.Identity.Data;
+using ComicsAndAllProject.UseCases.FavoriteCharacterInterfaces;
+using ComicsAndAllProject.UseCases.FavoriteCharactersUsecases;
+using ComicsAndAllProject.UseCases.UserProfileInterfaces;
+using ComicsAndAllProject.UseCases.UserProfileUsecases;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IFavoriteCharactersRepository, FavoriteCharactersRepository>();
 builder.Services.AddScoped<ISeriesRepository, SeriesRepository>();
 builder.Services.AddScoped<IPublishersRepository, PublishersRepository>();
 builder.Services.AddScoped<IViewSeriesUsecase, ViewSeriesUsecase>();
@@ -36,6 +45,14 @@ builder.Services.AddScoped<ICreatorRepository, CreatorRepository>();
 builder.Services.AddScoped<IGetCreatorByIdUsecase, GetCreatorByIdUsecase>();
 builder.Services.AddScoped<ISearchCharactersUsecase, SearchCharactersUsecase>();
 builder.Services.AddScoped<ISearchCreatorsUsecase, SearchCreatorsUsecase>();
+builder.Services.AddScoped<IGetFavoriteCharactersListUsecase, GetFavoriteCharactersListUsecase>();
+builder.Services.AddScoped<IAddFavoriteCharacterUsecase, AddFavoriteCharacterUsecase>();
+builder.Services.AddScoped<IFavoriteCharacterExistsUsecase, FavoriteCharacterExistsUsecase>();
+builder.Services.AddScoped<IRemoveFromFavoriteCharactersUsecase, RemoveFromFavoriteCharactersUsecase>();
+builder.Services.AddScoped<IGetAllUsersUsecase, GetAllUsersUsecase>();
+builder.Services.AddScoped<IViewUserUsecase, ViewUserUsecase>();
+builder.Services.AddScoped<IDeleteUserUsecase, DeleteUserUsecase>();
+builder.Services.AddScoped<IFavoriteCharacterCountUsecase, FavoriteCharacterCountUsecase>();
 
 
 builder.Services.AddScoped<IGetIssueUsecase , GetIssueUsecase>();
@@ -43,9 +60,16 @@ builder.Services.AddScoped<IGetAllIssuesUsecase, GetAllIssuesUsecase>();
 builder.Services.AddScoped<IGetSeriesByIdUsecase, GetSeriesByIdUsecase>();
 builder.Services.AddScoped<IGetAllCharactersUsecase, GetAllCharactersUsecase>();
 
+
 builder.Services.AddDbContext<ComicsAndAllDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<AccountContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("AccountContextConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AccountContext>();
 
 
 
@@ -74,10 +98,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();
