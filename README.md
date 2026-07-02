@@ -38,6 +38,18 @@ Early Development.
 - Added Character Index and Character Details pages
 - Added placeholder images for missing cover/profile images
 - Updated navigation links for Home, Series and Characters
+- Added Publishers Index and Publishers Details pages
+- Added Creators Index and Creators Details pages
+- Implemented ASP.NET Identity authentication
+- Implemented User Profile system
+- Added automatic User Profile creation for newly registered users
+- Created Profile page with ViewModel architecture
+- Implemented Favorite Characters system
+- Prevented duplicate favorite characters
+- Added favorite character limit
+- Added remove favorite functionality
+- Protected profile actions with authorization
+- Applied Use Case pattern for authentication-related business logic
 
 ## Development Log
 
@@ -75,5 +87,29 @@ Early Development.
 
 - Added Publishers Index and Details page
 - Added Creators Index and Details page
-  
-   
+
+### 2026-06-19
+
+- Implemented UserProfile entity and repository
+- Added User Profile page
+- Created ProfileViewModel
+- Connected ASP.NET Identity users with UserProfile records
+- Added automatic profile creation for new users
+
+### 2026-06-20
+
+- Implemented Favorite Characters system
+- Added FavoriteCharacter entity and repository
+- Added business rules through UseCases
+- Prevented duplicate favorite entries
+- Added maximum favorite character limit
+- Displayed favorite characters on profile page
+- Implemented remove favorite functionality
+
+### 2026-06-21
+
+- Added authentication-aware profile logic
+- Restricted profile actions to authenticated users
+- Prevented unauthorized favorite management
+- Added conditional UI rendering based on authentication state
+- Improved controller architecture by moving business logic into UseCases
